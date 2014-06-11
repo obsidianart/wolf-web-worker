@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Web Workers test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>The wolf and the flock, a webworker experiment</h1>
+
+                    <div id="options" role="form-inline">
+                        <div class="row">
+                            <div class="form-group col-xs-4">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">Tick speed</span>
+                                    <input id="wolf_speed" type="number" class="form-control text-center" value="50">
+                                    <span class="input-group-addon">ms</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-4">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">Flock count</span>
+                                    <input id="flock_amount" type="number" class="form-control text-center" value="50">
+                                    <span class="input-group-addon">Sheep</span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <button id="hunt" style="width:100%" type="button" class="btn btn-lg btn-primary">Start hunting</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ingame-options" role="form-inline">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button id="walked_path_toggle" style="width:100%" type="button" class="btn btn-lg btn-primary">Show/Hide walked path</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h3>Flock count <span id="flock_count"></h3>
+                    <div class="jumbotron">
+                        <div id="field">
+                            <canvas id="canvas_field_dom" width=900 height=500></canvas>
+                            <div id="wolf"><img src="/images/wolf.png" width="20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">The field &amp; the sheep</div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>The Field has a certain size</li>
+                                <li>The field observe the wolf movement and inform the wolf of obstacles and sheep</li>
+                                <li>The sheep makes no movement and has no brain</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">The wolf logic</div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>The wolf has no knowledge of the enviroment</li>
+                                <li>The wolf can move on any direction and any distance</li>
+                                <li>After every movement the wolf get a feedback, i.e. a sheep, an obstacle or just an accepted move</li>
+                                <li>If the wolf hit the side he knows that he found an obstacle but not how much he moved (he knows it moved same or less he requested)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">The Wolf aim</div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>The wolf should eat all the sheeps</li>
+                                <li>The wolf should map the enviroment</li>
+                                <li>The wolf should explore the entire map</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-xs-12">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">About the code</div>
+                        <div class="panel-body">
+                            I'm trying to resist the urge to use Knockout or Angular for DOM update and focus on the webworker logic.<br>
+                            This code is not intended for production and the bound between presentation logic and business logic is bad but, on the other side, any developer will be able to uderstand jQuery DOM manipulation.<br>
+                            Is there any reason to use a webworker here? NO<br>
+                            <small>Sidenote: Yes, I trust automatic semicolon insertion</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-xs-12">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">I want to do something with this code</div>
+                        <div class="panel-body">
+                            Feel free to improve the code in any way, throw a pull request and branch your own.<br>
+                            It would be nice to give more brain to the flock and the wolf and optmize the rendering speed
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <script type="template" id="sheep_template">
+            <div class="sheep"><img src="/images/sheep.png" width="20"></div>
+        </script>
+
+        <script type="template" id="blood_template">
+            <div class="blood"><img src="/images/blood.png" width="20"></div>
+        </script>
+
+        <script src="js/vendor/jquery-2.1.1.js"></script>
+        <script src="js/fieldCanvas.js"></script>
+        <script src="js/field.js"></script>
+        <script src="js/main.js"></script>
+
+        <script type="text/javascript">
+            $('#ingame-options').hide()
+            
+            $('#hunt').click(function(){
+                $('#options').hide()
+                $('#ingame-options').show()
+                start({
+                    sheepCount: Math.min(100,$('#flock_amount').val()),
+                    wolfSpeed: $('#wolf_speed').val()
+                });
+            })
+
+            $('#walked_path_toggle').click(function(){
+                $('#canvas_field_dom').toggle();
+            })
+        </script>
+    </body>
+</html>

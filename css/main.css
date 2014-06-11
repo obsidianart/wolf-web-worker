@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Game
+   ========================================================================== */
+#field {
+    background-color: orange;
+    position: relative;
+    margin:0 auto;
+    z-index:1;
+    width:900px;
+    height:500px;
+}
+
+#trace {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#wolf {
+    position: absolute;
+    -webkit-transition: all 0.3 ease-in;
+       -moz-transition: all 0.3 ease-in;
+         -o-transition: all 0.3 ease-in;
+            transition: all 0.3 ease-in;
+}
+
+#wolf img {
+    position: relative;
+    top:-10px;
+    left: -10px;
+}
+
+.sheep {
+    -webkit-transition: all 0.3 ease-in;
+       -moz-transition: all 0.3 ease-in;
+         -o-transition: all 0.3 ease-in;
+            transition: all 0.3 ease-in;
+    position: absolute;
+}
+
+.blood{
+    position: absolute;
+}
+
+.sheep img,
+.blood img{
+    position: relative;
+    top:-10px;
+    left: -10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
