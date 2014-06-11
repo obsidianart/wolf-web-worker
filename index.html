@@ -52,7 +52,7 @@
                     <div class="jumbotron">
                         <div id="field">
                             <canvas id="canvas_field_dom" width=900 height=500></canvas>
-                            <div id="wolf"><img src="/images/wolf.png" width="20"></div>
+                            <div id="wolf"><img src="./images/wolf.png" width="20"></div>
                         </div>
                     </div>
                 </div>
@@ -63,9 +63,9 @@
                         <div class="panel-heading">The field &amp; the sheep</div>
                         <div class="panel-body">
                             <ul>
-                                <li>The Field has a certain size</li>
-                                <li>The field observe the wolf movement and inform the wolf of obstacles and sheep</li>
-                                <li>The sheep makes no movement and has no brain</li>
+                                <li>The Field has a pre determined size</li>
+                                <li>The field observes the wolf's movements and informs the wolf of obstacles and sheep</li>
+                                <li>The sheep make no movement and have no brain</li>
                             </ul>
                         </div>
                     </div>
@@ -76,19 +76,20 @@
                         <div class="panel-body">
                             <ul>
                                 <li>The wolf has no knowledge of the enviroment</li>
-                                <li>The wolf can move on any direction and any distance</li>
-                                <li>After every movement the wolf get a feedback, i.e. a sheep, an obstacle or just an accepted move</li>
-                                <li>If the wolf hit the side he knows that he found an obstacle but not how much he moved (he knows it moved same or less he requested)</li>
+                                <li>The wolf can move in any direction and any distance</li>
+                                <li>After every movement the wolf receives feedbacks, i.e. a sheep, an obstacle or just an accepted move</li>
+                                <li>If the wolf hits the side he knows that he found an obstacle</li>
+                                <li>If the wolf hits an obstacle he doesn't receive feedback about the distance and moves next to it</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="panel panel-info">
-                        <div class="panel-heading">The Wolf aim</div>
+                        <div class="panel-heading">The Wolf's goal</div>
                         <div class="panel-body">
                             <ul>
-                                <li>The wolf should eat all the sheeps</li>
+                                <li>The wolf should eat all the sheep</li>
                                 <li>The wolf should map the enviroment</li>
                                 <li>The wolf should explore the entire map</li>
                             </ul>
@@ -101,9 +102,9 @@
                     <div class="panel panel-warning">
                         <div class="panel-heading">About the code</div>
                         <div class="panel-body">
-                            I'm trying to resist the urge to use Knockout or Angular for DOM update and focus on the webworker logic.<br>
-                            This code is not intended for production and the bound between presentation logic and business logic is bad but, on the other side, any developer will be able to uderstand jQuery DOM manipulation.<br>
-                            Is there any reason to use a webworker here? NO<br>
+                            I'm trying to resist the urge to use Knockout or Angular for DOM updates and focus on the webworker logic.<br>
+                            This code is not intended for production and the bound between presentation logic and business logic is bad but, on the other hand, any developer will be able to understand jQuery DOM manipulation.<br>
+                            Is there any reason to use a webworker here? NO!<br>
                             <small>Sidenote: Yes, I trust automatic semicolon insertion</small>
                         </div>
                     </div>
@@ -114,22 +115,26 @@
                     <div class="panel panel-warning">
                         <div class="panel-heading">I want to do something with this code</div>
                         <div class="panel-body">
-                            Feel free to improve the code in any way, throw a pull request and branch your own.<br>
+                            Feel free to improve the code in any way, throw a pull request or branch your own.<br>
                             It would be nice to give more brain to the flock and the wolf and optmize the rendering speed
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <footer>
+        	<h2><a target="_blank" href="http://www.obsidianart.com">Stefano Solinas - obsidianart</a></h2>
+        </footer>
 
         
 
         <script type="template" id="sheep_template">
-            <div class="sheep"><img src="/images/sheep.png" width="20"></div>
+            <div class="sheep"><img src="./images/sheep.png" width="20"></div>
         </script>
 
         <script type="template" id="blood_template">
-            <div class="blood"><img src="/images/blood.png" width="20"></div>
+            <div class="blood"><img src="./images/blood.png" width="20"></div>
         </script>
 
         <script src="js/vendor/jquery-2.1.1.js"></script>
