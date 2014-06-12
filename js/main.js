@@ -1,4 +1,4 @@
-//DOM REF
+//DOM References
 var $field = $('#field')
 var $wolf = $('#wolf')
 var $flock_count = $('#flock_count')
@@ -21,14 +21,16 @@ var field = new Field({
 var wolfInfo = getRandomPosition(field.size)
 var wolf = new Worker("js/wolf.js")
 
-//Canvas
+//Canvas for the wolf trace
 var field_canvas = new FieldCanvas({
 	id: "canvas_field_dom",
 	start: wolfInfo
 })
 
+//Update the dom (position wolf and sheep)
 updateDom()
 
+//Listening to the wolf
 wolf.addEventListener('message', function(e) {
 	switch (e.data.type) {
 		case 'move':
@@ -47,6 +49,7 @@ function start(opts){
 	wolf.postMessage({type:"move"})
 }
 
+//Move the wolf when the web worker request to and give a feedback back
 function moveWolf(data) {
 	//Wolf want to move, wait a moment and move it
 	//If the movement go outside the field move to the maximum possible
@@ -79,6 +82,7 @@ function moveWolf(data) {
 	},wolfSpeed)
 }
 
+//Update wolf and sheep position on the screen
 function updateDom(){
 	$wolf.css({
 		top:  wolfInfo.y,
@@ -90,7 +94,7 @@ function updateDom(){
 	field_canvas.move(wolfInfo.x,wolfInfo.y)
 }
 
-
+//Get a random posizion withing the field
 function getRandomPosition(size){
 	return {
 		x: Math.random()*size.w,

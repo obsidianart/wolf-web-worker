@@ -16,8 +16,11 @@ var FieldCanvas = function(opts){
 };
 
 FieldCanvas.prototype = {
+
+	//Track a movement on the canvas
     move: function(x,y) {
 		this.ctx.lineTo(Math.round(x),Math.round(y))
 		this.ctx.stroke()
     }
+    
 }
